@@ -25,5 +25,9 @@
                 <StandardListItem title="{contract>}"/>
             </List>
         </f:SimpleForm>
+        <f:SimpleForm>
+            <Label text="{i18n>yourAccount}"/>
+            <Text text="{account>/account}"/>
+        </f:SimpleForm>
     </Page>
 </mvc:View>

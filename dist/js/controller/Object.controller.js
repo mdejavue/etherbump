@@ -25,11 +25,11 @@ sap.ui.define([
                 debugger;
             });*/
 
-            
-            var sAddress = this.getView().byId("inpAddress").getValue();
+            var sFrom = this.getModel("account").getProperty("/account");
+            var sBumpAddress = this.getView().byId("inpAddress").getValue();
             var fAmount = this.getView().byId("inpAmount").getValue();
-            EtherBump.bump("0xf6d18feb5064840b136afc14af20c54e7faf6dbd", {
-                from: "0xf6d18feb5064840b136afc14af20c54e7faf6dbd",
+            EtherBump.bump(sBumpAddress, {
+                from: sFrom,
                 value: 1000000000000000000,
                 gasPrice: 20000000000,
                 gas: 4712388
