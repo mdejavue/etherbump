@@ -1,33 +1,20 @@
 sap.ui.define([
     "de/javue/etherbump/controller/BaseController",
-    "sap/ui/model/json/JSONModel"
-], function (BaseController, JSONModel) {
+    "de/javue/etherbump/model/WalletViewModelProvider",
+    "de/javue/etherbump/model/ContractViewModelProvider"
+], function (BaseController, WalletViewModelProvider, ContractViewModelProvider) {
     "use strict";
 
     return BaseController.extend("de.javue.etherbump.controller.Object", {
         onInit: function () {
-            console.log(EtherBump);
-            this._initContractModel();
-        },
-
-        _initContractModel: function () {
-            var oModel = new JSONModel();
-            this.getView().setModel(oModel, "contract");
-            setInterval(function () {
-                EtherBump.getActiveBidders().then(function (value) {
-                    oModel.setProperty("/ActiveBidders", value);
-                });
-            }, 2000);
+            this.setModel(WalletViewModelProvider.getModel(), "wallet");
+            this.setModel(ContractViewModelProvider.getModel(), "contract");
         },
 
         onBumpPressed: function (oEvent) {
-            /*EtherBump.decay().then(function(value) {
-                debugger;
-            });*/
-
-            var sFrom = this.getModel("account").getProperty("/account");
-            var sBumpAddress = this.getView().byId("inpAddress").getValue();
-            var fAmount = this.getView().byId("inpAmount").getValue();
+            var sFrom = this.getModel("wallet").getProperty("/MainAccount"),
+                sBumpAddress = this.getView().byId("inpAddress").getValue(),
+                fAmount = this.getView().byId("inpAmount").getValue();
             EtherBump.bump(sBumpAddress, {
                 from: sFrom,
                 value: 1000000000000000000,

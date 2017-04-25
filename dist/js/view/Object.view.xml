@@ -3,31 +3,35 @@
    xmlns:mvc="sap.ui.core.mvc"
    xmlns:f="sap.ui.layout.form"
    controllerName="de.javue.etherbump.controller.Object">   
-    <Page id="detail" title="{i18n>pageTitle}">
-        <f:SimpleForm>
-            <Label text="{i18n>address}"/>
-            <MaskInput id="inpAddress" mask="0xCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC">
-                <rules>
-                    <MaskInputRule maskFormatSymbol="C" regex="[a-zA-Z0-9]"/>
-                </rules>
-            </MaskInput>
-            <Label text="{i18n>amount}"/>
-            <MaskInput id="inpAmount" mask="CCC,CC">
-                <rules>
-                    <MaskInputRule maskFormatSymbol="C" regex="[0-9]"/>
-                </rules>
-            </MaskInput>
-            <Button text="{i18n>bump}" press=".onBumpPressed"/>
-        </f:SimpleForm>
-        <f:SimpleForm>
-            <Label text="{i18n>activeBiddersList}"/>
-            <List items="{contract>/ActiveBidders}">
-                <StandardListItem title="{contract>}"/>
-            </List>
-        </f:SimpleForm>
-        <f:SimpleForm>
-            <Label text="{i18n>yourAccount}"/>
-            <Text text="{account>/account}"/>
-        </f:SimpleForm>
+    <Page id="detail" title="{i18n>PAGE_TITLE}" enableScrolling="false">
+        <VBox justifyContent="SpaceBetween" fitContainer="true">
+            <f:SimpleForm>
+                <Label text="{i18n>ADDRESS}"/>
+                <MaskInput id="inpAddress" mask="0xCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC">
+                    <rules>
+                        <MaskInputRule maskFormatSymbol="C" regex="[a-zA-Z0-9]"/>
+                    </rules>
+                </MaskInput>
+                <Label text="{i18n>AMOUNT}"/>
+                <MaskInput id="inpAmount" mask="CCC,CC">
+                    <rules>
+                        <MaskInputRule maskFormatSymbol="C" regex="[0-9]"/>
+                    </rules>
+                </MaskInput>
+                <Button text="{i18n>BUMP}" press=".onBumpPressed"/>
+            </f:SimpleForm>
+
+            <f:SimpleForm>
+                <Label text="{i18n>ACTIVE_BIDDERS_LIST}"/>
+                <List items="{contract>/ActiveBidders}">
+                    <StandardListItem title="{contract>Address}" description="{contract>Bid}"/>
+                </List>
+            </f:SimpleForm>
+
+            <f:SimpleForm>
+                <Label text="{i18n>YOUR_WALLET}"/>
+                <Text text="{wallet>/MainAccount}"/>
+            </f:SimpleForm>
+        </VBox>
     </Page>
 </mvc:View>

@@ -10,6 +10,11 @@ contract EtherBump {
 	mapping (address => uint) bids;
 	uint public lastDecay;
 
+	event NewBid(
+		address indexed _from,
+		uint indexed _bid
+	);
+
 	function EtherBump() {
 		lastDecay = now;
 	}
@@ -62,6 +67,7 @@ contract EtherBump {
 		}
 
 		bids[who] += msg.value;
+		NewBid(who, bids[who]);
 		return bids[who];
 	}
 

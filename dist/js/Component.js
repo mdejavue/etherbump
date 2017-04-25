@@ -13,25 +13,12 @@ sap.ui.define([
             // wait for embark to register contract
             UIComponent.prototype.init.apply(this, arguments);
             var that = this;
-            var contractInterval = setInterval(function() {
-                if (window.EtherBump) {
-                    clearInterval(contractInterval);
+            var checkReady = setInterval(function() {
+                if (window.web3 && window.EtherBump) {
+                    clearInterval(checkReady);
                     that.getRouter().initialize();
-                    that.createAccountModel();
                 }
             },100);
-        },
-
-        createAccountModel: function() {
-            var oModel = new JSONModel({
-                "account" : null
-            });
-            this.setModel(oModel, "account");
-            var accountInterval = setInterval(function() {
-            if (web3.eth.accounts[0] !== oModel.getProperty("/account")) {
-                oModel.setProperty("/account", web3.eth.accounts[0]);
-            }
-            }, 300);
         }
     });
 });

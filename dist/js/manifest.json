@@ -5,8 +5,8 @@
         "id": "sap.ui.demo.wt",
         "type": "application",
         "i18n": "i18n/i18n.properties",
-        "title": "{{appTitle}}",
-        "description": "{{appDescription}}",
+        "title": "{{APP_TITLE}}",
+        "description": "{{APP_DESCRIPTION}}",
         "applicationVersion": {
             "version": "1.0.0"
         }
