@@ -5,9 +5,11 @@ pragma solidity ^0.4.7;
 contract EtherBump {
 	uint public constant DECAY_RATE = 10 finney; 
 	uint public constant MINIMUM_BID = 10 finney;
+	uint public constant MINIMUM_CONFIG_FEE = 10 finney;
 
-	address[] public activeBidders;
+	address[] activeBidders;
 	mapping (address => uint) bids;
+	mapping (address => string) configurations;
 	uint public lastDecay;
 
 	event NewBid(
@@ -17,6 +19,18 @@ contract EtherBump {
 
 	function EtherBump() {
 		lastDecay = now;
+	}
+
+	function setMyConfiguration(string json) payable returns(string){
+		if (msg.value <= MINIMUM_CONFIG_FEE) {
+			throw;
+		}
+		configurations[msg.sender] = json;
+		return configurations[msg.sender];
+	}
+
+	function getMyConfiguration() constant returns(string) {
+		return configurations[msg.sender];
 	}
 
 	function getActiveBidders() constant returns(address[]) {

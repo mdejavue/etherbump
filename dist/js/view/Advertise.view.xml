@@ -6,11 +6,12 @@
     <Page title="{i18n>PAGE_TITLE}" enableScrolling="false">
         <VBox justifyContent="SpaceBetween" fitContainer="true">
             <VBox>
+                <Button text="{i18n>REFRESH}" press=".onRefreshPressed"/>
                 <f:SimpleForm>
                     <Label text="{i18n>YOUR_ADDRESS}"/>
                     <Text text="{wallet>/MainAccount}"/>
                     <Label text="{i18n>ADVERT_JSON}"/>
-                    <TextArea width="100%"/>
+                    <TextArea id="inpConfig" width="100%" value="{configuration>/Json}"/>
                 </f:SimpleForm>
                 <Button text="{i18n>SAVE}" press=".onSavePressed"/>
             </VBox>

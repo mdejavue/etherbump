@@ -1,8 +1,9 @@
 sap.ui.define([
     "de/javue/etherbump/controller/BaseController",
+    "sap/m/MessageToast",
     "de/javue/etherbump/model/WalletViewModelProvider",
     "de/javue/etherbump/model/ContractViewModelProvider"
-], function (BaseController, WalletViewModelProvider, ContractViewModelProvider) {
+], function (BaseController, MessageToast, WalletViewModelProvider, ContractViewModelProvider) {
     "use strict";
 
     return BaseController.extend("de.javue.etherbump.controller.Bump", {
@@ -12,7 +13,8 @@ sap.ui.define([
         },
 
         onBumpPressed: function (oEvent) {
-            var sFrom = this.getModel("wallet").getProperty("/MainAccount"),
+            var that = this,
+                sFrom = this.getModel("wallet").getProperty("/MainAccount"),
                 sBumpAddress = this.getView().byId("inpAddress").getValue(),
                 iAmount = this.getView().byId("inpAmount").getValue();
             EtherBump.bump(sBumpAddress, {
@@ -22,6 +24,7 @@ sap.ui.define([
                 gas: 4712388
             }).then(function (value) {
                 console.log(value);
+                MessageToast.show(that.getModel("i18n").getProperty("TOAST_BUMPED"));
             });
         }
     });
