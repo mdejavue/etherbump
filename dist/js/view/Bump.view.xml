@@ -2,8 +2,8 @@
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc"
    xmlns:f="sap.ui.layout.form"
-   controllerName="de.javue.etherbump.controller.Object">   
-    <Page id="detail" title="{i18n>PAGE_TITLE}" enableScrolling="false">
+   controllerName="de.javue.etherbump.controller.Bump">   
+    <Page title="{i18n>PAGE_TITLE}" enableScrolling="false">
         <VBox justifyContent="SpaceBetween" fitContainer="true">
             <f:SimpleForm>
                 <Label text="{i18n>ADDRESS}"/>
@@ -13,7 +13,7 @@
                     </rules>
                 </MaskInput>
                 <Label text="{i18n>AMOUNT}"/>
-                <MaskInput id="inpAmount" mask="CCC,CC">
+                <MaskInput id="inpAmount" mask="CCCCCCCCCCCCCCCCCCC" value="1000000000000000000">
                     <rules>
                         <MaskInputRule maskFormatSymbol="C" regex="[0-9]"/>
                     </rules>
@@ -26,7 +26,7 @@
                 <List items="{
                     path: 'contract>/ActiveBidders',
                     sorter: [{
-                        path: 'contract>Bid',
+                        path: 'Bid',
                         descending: true
                     }]
                 }">

@@ -50,26 +50,26 @@
                 "bypassed": {
                     "target": [
                         "master",
-                        "object"
+                        "bump"
                     ]
                 },
                 "async": true
             },
             "routes": [
                 {
-                    "pattern": "",
-                    "name": "master",
+                    "pattern": "bump",
+                    "name": "bump",
                     "target": [
-                        "object",
-                        "master"
+                        "master",
+                        "bump"
                     ]
                 },
                 {
-                    "pattern": "object",
-                    "name": "object",
+                    "pattern": "advertise",
+                    "name": "advertise",
                     "target": [
                         "master",
-                        "object"
+                        "advertise"
                     ]
                 }
             ],
@@ -80,9 +80,14 @@
                     "viewId": "master",
                     "controlAggregation": "masterPages"
                 },
-                "object": {
-                    "viewName": "Object",
-                    "viewId": "object",
+                "bump": {
+                    "viewName": "Bump",
+                    "viewId": "bump",
+                    "viewLevel": 2
+                },
+                "advertise": {
+                    "viewName": "Advertise",
+                    "viewId": "advertise",
                     "viewLevel": 2
                 }
             }

@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (BaseController, WalletViewModelProvider, ContractViewModelProvider) {
     "use strict";
 
-    return BaseController.extend("de.javue.etherbump.controller.Object", {
+    return BaseController.extend("de.javue.etherbump.controller.Bump", {
         onInit: function () {
             this.setModel(WalletViewModelProvider.getModel(), "wallet");
             this.setModel(ContractViewModelProvider.getModel(), "contract");
@@ -14,10 +14,10 @@ sap.ui.define([
         onBumpPressed: function (oEvent) {
             var sFrom = this.getModel("wallet").getProperty("/MainAccount"),
                 sBumpAddress = this.getView().byId("inpAddress").getValue(),
-                fAmount = this.getView().byId("inpAmount").getValue();
+                iAmount = this.getView().byId("inpAmount").getValue();
             EtherBump.bump(sBumpAddress, {
                 from: sFrom,
-                value: 1000000000000000000,
+                value: iAmount,
                 gasPrice: 20000000000,
                 gas: 4712388
             }).then(function (value) {
