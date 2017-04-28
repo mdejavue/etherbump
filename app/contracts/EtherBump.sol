@@ -11,7 +11,7 @@ contract EtherBump {
 	uint public lastDecay;
 
 	event NewBid(
-		address indexed _from,
+		address indexed _address,
 		uint indexed _bid
 	);
 
@@ -25,11 +25,6 @@ contract EtherBump {
 
 	function getBid(address ad) constant returns(uint) {
 		return bids[ad];
-	}
-
-	function getTopN(uint n) constant returns(address[]) {
-		// returns top n bidders
-		return activeBidders;
 	}
 
 	// has to be called from external

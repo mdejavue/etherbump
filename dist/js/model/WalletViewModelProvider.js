@@ -5,7 +5,7 @@ sap.ui.define([
     var _initWalletModel = function(){
         _oModel = new JSONModel({
             "MainAccount" : "",
-        });
+        }).setDefaultBindingMode("OneWay");
         var accountInterval = setInterval(function() {
             if (web3.eth.accounts[0] !== _oModel.getProperty("/MainAccount")) {
                 _oModel.setProperty("/MainAccount", web3.eth.accounts[0]);

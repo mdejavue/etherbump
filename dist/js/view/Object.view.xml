@@ -23,7 +23,13 @@
 
             <f:SimpleForm>
                 <Label text="{i18n>ACTIVE_BIDDERS_LIST}"/>
-                <List items="{contract>/ActiveBidders}">
+                <List items="{
+                    path: 'contract>/ActiveBidders',
+                    sorter: [{
+                        path: 'contract>Bid',
+                        descending: true
+                    }]
+                }">
                     <StandardListItem title="{contract>Address}" description="{contract>Bid}"/>
                 </List>
             </f:SimpleForm>
