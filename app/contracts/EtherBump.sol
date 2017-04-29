@@ -4,6 +4,7 @@ pragma solidity ^0.4.7;
 
 contract EtherBump {
 	uint public constant DECAY_RATE = 10 finney; 
+	uint public constant CLICK_DECAY = 10 finney;
 	uint public constant MINIMUM_BID = 10 finney;
 	uint public constant MINIMUM_CONFIG_FEE = 10 finney;
 
@@ -41,8 +42,14 @@ contract EtherBump {
 		return bids[ad];
 	}
 
+	function decayDueClicks(address ad, uint count) {
+		// if (msg.sender != 'fixed address')
+		// var amount = count * CLICK_DECAY;
+		// decay amount
+	}
+
 	// has to be called from external
-	function decay() returns(bool success){
+	function decayDueTime() returns(bool success){
 		if (now >= lastDecay + 1 days) {
 			for(uint iter = 0; iter < activeBidders.length; iter++) {
 				address current = activeBidders[iter];

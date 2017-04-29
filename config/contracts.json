@@ -1,6 +1,6 @@
 {
   "default": {
-    "gas": "auto",
+    "gas": "1726400",
     "contracts": {
     }
   }
